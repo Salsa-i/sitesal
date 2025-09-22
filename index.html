@@ -3,67 +3,71 @@
 <head>
   <title>Meu Site - Início</title>
   <style>
-    <style>
-  body {
-    font-family: Georgia, serif;
-    padding: 40px;
-    color: #eee;
-    line-height: 1.6;
-    margin: 0; /* Garante que não haverá margem extra */
-    overflow: hidden; /* Evita barras de rolagem desnecessárias por causa da animação */
-    position: relative; /* Para o pseudo-elemento do gradiente */
-  }
-
-  body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      45deg,
-      #ee7752,
-      #e73c7e,
-      #23a6d5,
-      #23d5ab
-    ); /* Cores do gradiente */
-    background-size: 400% 400%; /* Para a animação do gradiente */
-    animation: gradientAnimation 15s ease infinite; /* Animação */
-    z-index: -1; /* Coloca o fundo atrás do conteúdo */
-  }
-
-  @keyframes gradientAnimation {
-    0% {
-      background-position: 0% 50%;
+    body {
+      font-family: Georgia, serif;
+      padding: 40px;
+      color: #eee;
+      line-height: 1.6;
+      margin: 0;
+      overflow: hidden;
+      background: #000;
     }
-    50% {
-      background-position: 100% 50%;
+    .particles-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
     }
-    100% {
-      background-position: 0% 50%;
+    .particle {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0;
+      animation: particleAnimation 10s infinite;
     }
-  }
-
-  /* Seu CSS existente para links, h1, p etc. pode vir aqui abaixo */
-  a {
-    color: #ff6600;
-    text-decoration: none;
-    margin-right: 15px;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-</style> }
+    @keyframes particleAnimation {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="particles-container"></div>
   <h1>Bem-vindo ao meu site!</h1>
   <p>Aqui você vai encontrar minhas escritas e pensamentos.</p>
   <nav>
     <a href="sobre.html">Sobre</a>
     <a href="textos/capitulo1.html">Capítulo 1</a>
   </nav>
+  <script>
+    const particlesContainer = document.querySelector('.particles-container');
+
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = `${Math.random() * 100}vw`;
+      particle.style.width = `${Math.random() * 5}px`;
+      particle.style.height = particle.style.width;
+      particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
+      particle.style.animationDelay = `-${Math.random() * 10}s`;
+      particlesContainer.appendChild(particle);
+    }
+
+    for (let i = 0; i < 50; i++) {
+      createParticle();
+    }
+  </script>
 </body>
 </html>
-
