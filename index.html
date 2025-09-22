@@ -3,9 +3,58 @@
 <head>
   <title>Meu Site - Início</title>
   <style>
-    body { font-family: Georgia, serif; padding: 40px; background: #111; color: #eee; }
-    a { color: #ff6600; text-decoration: none; margin-right: 15px; }
-    a:hover { text-decoration: underline; }
+    <style>
+  body {
+    font-family: Georgia, serif;
+    padding: 40px;
+    color: #eee;
+    line-height: 1.6;
+    margin: 0; /* Garante que não haverá margem extra */
+    overflow: hidden; /* Evita barras de rolagem desnecessárias por causa da animação */
+    position: relative; /* Para o pseudo-elemento do gradiente */
+  }
+
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      #ee7752,
+      #e73c7e,
+      #23a6d5,
+      #23d5ab
+    ); /* Cores do gradiente */
+    background-size: 400% 400%; /* Para a animação do gradiente */
+    animation: gradientAnimation 15s ease infinite; /* Animação */
+    z-index: -1; /* Coloca o fundo atrás do conteúdo */
+  }
+
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Seu CSS existente para links, h1, p etc. pode vir aqui abaixo */
+  a {
+    color: #ff6600;
+    text-decoration: none;
+    margin-right: 15px;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style> }
   </style>
 </head>
 <body>
@@ -17,3 +66,4 @@
   </nav>
 </body>
 </html>
+
