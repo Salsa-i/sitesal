@@ -14,9 +14,9 @@ body {
   /* CORREÇÕES PARA O FUNDO DEGRADÊ */
   background: linear-gradient(
     45deg,
-    #003366, /* Azul Escuro */
-    #663399, /* Roxo */
-    #3399CC, /* Azul Médio */
+    #04203d, /* Azul Escuro */
+    #411072, /* Roxo */
+    #4c7386, /* Azul Médio */
     #00CC99  /* Verde Ciano */
   );
   /* background-attachment: fixed; FAZ O FUNDO COBRIR A TELA INTEIRA E FICAR PARADO */
