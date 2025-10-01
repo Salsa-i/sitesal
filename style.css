@@ -1,0 +1,68 @@
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background: #ff6600;
+  width: 0%;
+  z-index: 99;
+  transition: width 0.1s;
+}
+
+body {
+  font-family: Georgia, serif;
+  padding: 40px;
+  color: #eee;
+  line-height: 1.6;
+  margin: 0;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Corrigido: ponto e vírgula adicionado */
+  background: linear-gradient(
+    45deg,
+    #ee7752,
+    #e73c7e,
+    #23a6d5,
+    #23d5ab
+  ); /* Corrigido: ponto e vírgula adicionado */
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+p {
+  font-size: 1.1em;
+}
+
+a {
+  color: #ff6600;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
