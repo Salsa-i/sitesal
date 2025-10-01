@@ -1,16 +1,6 @@
-html, body {
+html {
+  /* O html define a altura total da página */
   min-height: 100%;
-}
-
-#progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 5px;
-  background: #ff6600; /* Cor da barra de progresso (Laranja, mantida para contraste) */
-  width: 0%;
-  z-index: 99;
-  transition: width 0.1s;
 }
 
 body {
@@ -20,15 +10,8 @@ body {
   line-height: 1.6;
   margin: 0;
   position: relative;
-}
-
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  
+  /* CORREÇÕES PARA O FUNDO DEGRADÊ */
   background: linear-gradient(
     45deg,
     #003366, /* Azul Escuro */
@@ -36,10 +19,13 @@ body::before {
     #3399CC, /* Azul Médio */
     #00CC99  /* Verde Ciano */
   );
+  /* background-attachment: fixed; FAZ O FUNDO COBRIR A TELA INTEIRA E FICAR PARADO */
+  background-attachment: fixed;
   background-size: 400% 400%;
   animation: gradientAnimation 15s ease infinite;
-  z-index: -1;
 }
+
+/* O bloco body::before é removido */
 
 @keyframes gradientAnimation {
   0% {
@@ -53,6 +39,17 @@ body::before {
   }
 }
 
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background: #ff6600;
+  width: 0%;
+  z-index: 99;
+  transition: width 0.1s;
+}
+
 h1 {
   font-size: 2.5em;
 }
@@ -62,7 +59,7 @@ p {
 }
 
 a {
-  color: #ff6600; /* Cor dos links (Laranja, mantida) */
+  color: #ff6600;
   text-decoration: none;
   margin-right: 15px;
 }
