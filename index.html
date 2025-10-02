@@ -6,14 +6,33 @@
 </head>
 <body>
   <div id="progress-bar"></div>
-
+  
+  <h1>Bem-vindo ao meu site!</h1>
+  <p>Aqui você vai encontrar minhas escritas e pensamentos.</p>
+  
   <nav>
     <a href="sobre.html">Sobre</a>
     <a href="textos/capitulo1.html">Capítulo 1</a>
   </nav>
 
+  <p>
+    Esse é o site
+  </p>
 
-  
+  <section id="contato-rapido">
+    <h2>Me Envie Uma Mensagem!</h2>
+    <form action="https://formspree.io/f/myznwabl" method="POST">
+      
+      <label for="email">Seu Email:</label>
+      <input type="email" id="email" name="_replyto" required placeholder="seuemail@exemplo.com">
+      
+      <label for="mensagem">o que precisa?:</label>
+      <textarea id="mensagem" name="mensagem" required placeholder="Digite sua mensagem aqui..."></textarea>
+      
+      <button type="submit">Envia ai</button>
+      <p class="aviso-form">Obrigado!</p>
+    </form>
+  </section>
   <script>
     const progressBar = document.getElementById('progress-bar');
     window.addEventListener('scroll', () => {
