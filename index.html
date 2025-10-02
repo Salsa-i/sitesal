@@ -35,59 +35,67 @@
     <div id="status"></div>
   </section>
  <script>
-    // 1. Script da Barra de Progresso (Mantido)
-    const progressBar = document.getElementById('progress-bar');
-    window.addEventListener('scroll', () => {
-      const totalHeight = document.body.scrollHeight - window.innerHeight;
-      const scrollPosition = window.scrollY;
-      const progress = (scrollPosition / totalHeight) * 100;
-      progressBar.style.width = `${progress}%`;
-    });
+    document.addEventListener('DOMContentLoaded', (event) => {
+      
+      // --- 1. SCRIPT DA BARRA DE PROGRESSO ---
+      const progressBar = document.getElementById('progress-bar');
+      if (progressBar) { // Verifica se a barra existe
+        window.addEventListener('scroll', () => {
+          const totalHeight = document.body.scrollHeight - window.innerHeight;
+          const scrollPosition = window.scrollY;
+          // Evita divisão por zero
+          const progress = totalHeight > 0 ? (scrollPosition / totalHeight) * 100 : 0; 
+          progressBar.style.width = `${progress}%`;
+        });
+      }
 
-    // 2. Script de Envio do Formulário (Otimizado)
-    
-    // Seleciona o formulário diretamente usando a tag <form>
-    var form = document.getElementsByTagName("form")[0]; 
-    var status = document.getElementById("status");
 
-    function success() {
-      form.reset(); // Limpa o formulário
-      status.innerHTML = "Obrigado! Mensagem enviada com sucesso.";
-      status.style.color = '#00CC99'; // Cor de sucesso (verde/ciano)
-      // Remove a mensagem após 5 segundos
-      setTimeout(() => status.innerHTML = '', 5000); 
-    }
+      // --- 2. SCRIPT DE ENVIO DO FORMULÁRIO ---
+      // Seleciona o primeiro formulário do documento
+      var form = document.getElementsByTagName("form")[0]; 
+      var status = document.getElementById("status");
 
-    function error() {
-      status.innerHTML = "Oops! Ocorreu um erro. Tente novamente.";
-      status.style.color = '#e73c7e'; // Cor de erro (rosa)
-    }
-
-    form.addEventListener("submit", function(ev) {
-      ev.preventDefault(); // Impede o envio padrão e o redirecionamento
-      var data = new FormData(form);
-      fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: {
-            'Accept': 'application/json'
+      // Só tenta anexar o listener se o formulário e o status existirem
+      if (form && status) { 
+        function success() {
+          form.reset(); 
+          status.innerHTML = "Obrigado! Mensagem enviada com sucesso.";
+          status.style.color = '#00CC99';
+          setTimeout(() => status.innerHTML = '', 5000); 
         }
-      }).then(response => {
-        if (response.ok) {
-          success();
-        } else {
-          response.json().then(data => {
-            if (Object.hasOwn(data, 'errors')) {
-              status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-            } else {
-              error();
+
+        function error() {
+          status.innerHTML = "Oops! Ocorreu um erro. Tente novamente.";
+          status.style.color = '#e73c7e';
+        }
+
+        form.addEventListener("submit", function(ev) {
+          ev.preventDefault();
+          var data = new FormData(form);
+          fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
             }
-          })
-        }
-      }).catch(error => {
-        error()
-      });
-    });
+          }).then(response => {
+            if (response.ok) {
+              success();
+            } else {
+              response.json().then(data => {
+                if (Object.hasOwn(data, 'errors')) {
+                  status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+                } else {
+                  error();
+                }
+              })
+            }
+          }).catch(error => {
+            error()
+          });
+        });
+      }
+    }); // Fim do DOMContentLoaded
   </script>
 </body>
 </html>
