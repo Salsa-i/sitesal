@@ -35,7 +35,7 @@
     <div id="status"></div>
   </section>
  <script>
-    // 1. Script da Barra de Progresso (MANTIDO)
+    // 1. Script da Barra de Progresso (Mantido)
     const progressBar = document.getElementById('progress-bar');
     window.addEventListener('scroll', () => {
       const totalHeight = document.body.scrollHeight - window.innerHeight;
@@ -44,25 +44,27 @@
       progressBar.style.width = `${progress}%`;
     });
 
-    // 2. Script de Envio do Formulário (NOVO)
-    var form = document.getElementById("contato-rapido").getElementsByTagName("form")[0];
+    // 2. Script de Envio do Formulário (Otimizado)
+    
+    // Seleciona o formulário diretamente usando a tag <form>
+    var form = document.getElementsByTagName("form")[0]; 
     var status = document.getElementById("status");
 
     function success() {
       form.reset(); // Limpa o formulário
       status.innerHTML = "Obrigado! Mensagem enviada com sucesso.";
-      status.style.color = '#00CC99'; // Cor de sucesso
-      // Limpa a mensagem após 5 segundos
+      status.style.color = '#00CC99'; // Cor de sucesso (verde/ciano)
+      // Remove a mensagem após 5 segundos
       setTimeout(() => status.innerHTML = '', 5000); 
     }
 
     function error() {
       status.innerHTML = "Oops! Ocorreu um erro. Tente novamente.";
-      status.style.color = '#e73c7e'; // Cor de erro
+      status.style.color = '#e73c7e'; // Cor de erro (rosa)
     }
 
     form.addEventListener("submit", function(ev) {
-      ev.preventDefault(); // Impede o envio padrão (e o redirecionamento)
+      ev.preventDefault(); // Impede o envio padrão e o redirecionamento
       var data = new FormData(form);
       fetch(form.action, {
         method: form.method,
