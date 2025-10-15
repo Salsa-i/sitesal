@@ -25,6 +25,8 @@ body {
   animation: gradientAnimation 15s ease infinite;
 }
 
+padding-bottom: 500px
+
 /* O bloco body::before é removido */
 
 @keyframes gradientAnimation {
