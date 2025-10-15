@@ -70,25 +70,25 @@ a:hover {
 
 
 #contato-rapido form {
-    /* Faz com que o formulário organize seus filhos como blocos flexíveis */
     display: flex;
-    /* Coloca os filhos (label, input, button) em uma coluna */
-    flex-direction: column;
-    /* Adiciona um espaço entre os elementos do formulário (opcional) */
-    gap: 15px; 
-    
-    /* Configuração opcional para a largura do formulário */
-    max-width: 500px; /* Limita a largura para melhor visualização */
+    flex-direction: column; 
+    gap: 15px;
+    max-width: 500px;
     margin-top: 20px;
+    
+    /* NOVO: Centraliza todos os itens do formulário dentro do contêiner */
+    align-items: center; 
+}
+
+/* Nota: Para que isso funcione bem, você precisará remover o `width: 100%` 
+   dos seus inputs/textarea para que eles não estiquem a 500px, 
+   ou adicionar uma largura fixa a eles. */
 }
 
 #contato-rapido label {
-  #contato-rapido form {
-    display: flex;
-    /* Mude de 'column' para 'row' */
-    flex-direction: row; 
-    /* Adicione quebra de linha se não couber na tela */
-    flex-wrap: wrap; 
-    gap: 15px;
-}
+    /* Não é estritamente necessário com flex-direction: column e display: block nos campos,
+       mas é bom para garantir que o label ocupe a largura total */
+    display: block; 
+    margin-bottom: 5px; /* Adiciona um pequeno espaço após o rótulo e antes do campo */
+    font-weight: bold;
 }
