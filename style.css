@@ -71,19 +71,13 @@ a:hover {
 
 #contato-rapido form {
     display: flex;
-    flex-direction: column; 
+    /* Mude de 'column' para 'row' */
+    flex-direction: row; 
+    /* Adicione quebra de linha se não couber na tela */
+    flex-wrap: wrap; 
     gap: 15px;
-    max-width: 500px;
-    margin-top: 20px;
-    
-    /* NOVO: Centraliza todos os itens do formulário dentro do contêiner */
-    align-items: center; 
 }
 
-/* Nota: Para que isso funcione bem, você precisará remover o `width: 100%` 
-   dos seus inputs/textarea para que eles não estiquem a 500px, 
-   ou adicionar uma largura fixa a eles. */
-}
 
 #contato-rapido label {
     /* Não é estritamente necessário com flex-direction: column e display: block nos campos,
