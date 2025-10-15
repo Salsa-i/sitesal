@@ -83,9 +83,12 @@ a:hover {
 }
 
 #contato-rapido label {
-    /* Não é estritamente necessário com flex-direction: column e display: block nos campos,
-       mas é bom para garantir que o label ocupe a largura total */
-    display: block; 
-    margin-bottom: 5px; /* Adiciona um pequeno espaço após o rótulo e antes do campo */
-    font-weight: bold;
+  #contato-rapido form {
+    display: flex;
+    /* Mude de 'column' para 'row' */
+    flex-direction: row; 
+    /* Adicione quebra de linha se não couber na tela */
+    flex-wrap: wrap; 
+    gap: 15px;
+}
 }
