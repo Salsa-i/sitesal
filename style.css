@@ -1,6 +1,18 @@
 html {
   /* O html define a altura total da página */
   min-height: 100%;
+    /* O gradiente é movido para o HTML para que as estrelas possam ficar no body */
+  background: linear-gradient(
+    45deg,
+    #04203d, /* Azul Escuro */
+    #411072, /* Roxo */
+    #4c7386, /* Azul Médio */
+    #00CC99  /* Verde Ciano */
+  );
+  background-attachment: fixed;
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  overflow: hidden; /* Impede barras de rolagem indesejadas das estrelas */
 }
 
 body {
@@ -10,22 +22,99 @@ body {
   line-height: 1.6;
   margin: 0;
   position: relative;
-  
-  /* CORREÇÕES PARA O FUNDO DEGRADÊ */
-  background: linear-gradient(
-    45deg,
-    #04203d, /* Azul Escuro */
-    #411072, /* Roxo */
-    #4c7386, /* Azul Médio */
-    #00CC99  /* Verde Ciano */
-  );
-  /* background-attachment: fixed; FAZ O FUNDO COBRIR A TELA INTEIRA E FICAR PARADO */
-  background-attachment: fixed;
-  background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
 }
 
 /* O bloco body::before é removido */
+
+/* Estrelas Caindo */
+@keyframes anim-stars {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-2000px);
+    }
+}
+
+/* Camadas de estrelas */
+.stars, .stars2, .stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: -1; /* Coloca as estrelas atrás do conteúdo */
+}
+
+.stars {
+    background: transparent;
+    animation: anim-stars 200s linear infinite;
+}
+
+.stars2 {
+    background: transparent;
+    animation: anim-stars 150s linear infinite;
+}
+
+.stars3 {
+    background: transparent;
+    animation: anim-stars 100s linear infinite;
+}
+
+/* Função para gerar as sombras das estrelas */
+/* A geração das estrelas é feita com box-shadow */
+.stars:after, .stars2:after, .stars3:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+}
+
+/* Estrelas pequenas */
+.stars:after {
+    box-shadow:
+        1839px 1569px #FFF, 1599px 103px #FFF, 143px 1279px #FFF,
+        1244px 1774px #FFF, 1221px 493px #FFF, 1803px 1195px #FFF,
+        1283px 1860px #FFF, 32px 1475px #FFF, 1423px 1488px #FFF,
+        1200px 1018px #FFF, 1024px 144px #FFF, 1438px 109px #FFF,
+        174px 1383px #FFF, 1195px 1238px #FFF, 1782px 129px #FFF,
+        1008px 67px #FFF, 1219px 125px #FFF, 353px 1825px #FFF,
+        1559px 1773px #FFF, 165px 181px #FFF;
+}
+
+/* Estrelas médias */
+.stars2:after {
+    width: 2px;
+    height: 2px;
+    box-shadow:
+        1106px 1602px #FFF, 187px 118px #FFF, 1091px 1805px #FFF,
+        118px 131px #FFF, 1147px 1656px #FFF, 1835px 1193px #FFF,
+        122px 1528px #FFF, 1789px 1381px #FFF, 1898px 1827px #FFF,
+        1911px 1060px #FFF, 1042px 1332px #FFF, 1269px 76px #FFF,
+        1031px 531px #FFF, 1231px 1199px #FFF, 1869px 1186px #FFF,
+        141px 164px #FFF, 1610px 1205px #FFF, 1334px 1122px #FFF,
+        1897px 1296px #FFF, 1192px 1618px #FFF;
+}
+
+/* Estrelas grandes */
+.stars3:after {
+    width: 3px;
+    height: 3px;
+    box-shadow:
+        1388px 1868px #FFF, 112px 1171px #FFF, 1535px 89px #FFF,
+        958px 126px #FFF, 1133px 1834px #FFF, 1756px 123px #FFF,
+        1889px 1480px #FFF, 1494px 129px #FFF, 112px 1970px #FFF,
+        1793px 1538px #FFF, 1509px 108px #FFF, 1638px 128px #FFF,
+        1709px 1812px #FFF, 116px 128px #FFF, 188px 177px #FFF,
+        1191px 184px #FFF, 1184px 136px #FFF, 1961px 1029px #FFF,
+        1161px 111px #FFF, 116px 194px #FFF;
+}
+
 
 @keyframes gradientAnimation {
   0% {
