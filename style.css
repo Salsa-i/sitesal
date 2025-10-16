@@ -22,14 +22,7 @@ body {
   line-height: 1.6;
   margin: 0;
   position: relative;
-}
-
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
-/* O bloco body::before é removido */
+}/* O bloco body::before é removido */
 
 /* Estrelas Caindo */
 @keyframes anim-stars {
