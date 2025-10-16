@@ -162,6 +162,15 @@ a:hover {
   text-decoration: underline;
 }
 
+#starfield {
+    position: fixed; /* Fixa o canvas na viewport */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Ocupa a largura total da viewport */
+    height: 100vh; /* Ocupa a altura total da viewport inicialmente */
+    z-index: -1; /* Coloca o canvas atrás de todo o conteúdo da página */
+    pointer-events: none; /* Garante que o canvas não bloqueie cliques em outros elementos */
+}
 
 #contato-rapido form {
     /* Faz com que o formulário organize seus filhos como blocos flexíveis */
