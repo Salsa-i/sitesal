@@ -56,17 +56,17 @@ body {
 
 .stars {
     background: transparent;
-    animation: anim-stars 15s linear infinite;
+    animation: anim-stars 200s linear infinite;
 }
 
 .stars2 {
     background: transparent;
-    animation: anim-stars 15s linear infinite;
+    animation: anim-stars 150s linear infinite;
 }
 
 .stars3 {
     background: transparent;
-    animation: anim-stars 15s linear infinite;
+    animation: anim-stars 100s linear infinite;
 }
 
 /* Função para gerar as sombras das estrelas */
