@@ -11,7 +11,7 @@ body {
   margin: 0;
   position: relative;
   
-  /* CORREÇÕES PARA O FUNDO DEGRADÊ */
+  /* CORREÇÕES PARA O FUNDO DEGRADÊ - NOITE (padrão) */
   background: linear-gradient(
     45deg,
     #04203d, /* Azul Escuro */
@@ -23,6 +23,30 @@ body {
   background-attachment: fixed;
   background-size: 400% 400%;
   animation: gradientAnimation 15s ease infinite;
+  transition: background 1s ease, color 1s ease;
+}
+
+/* Tema DIA - cores claras */
+body.day-theme {
+  background: linear-gradient(
+    45deg,
+    #87CEEB, /* Azul Céu */
+    #98D8E8, /* Azul Claro */
+    #B0E0E6, /* Powder Blue */
+    #F0E68C  /* Amarelo Claro */
+  );
+  color: #333;
+}
+
+body.day-theme a {
+  color: #0066cc;
+}
+
+body.day-theme h1,
+body.day-theme h2,
+body.day-theme p,
+body.day-theme label {
+  color: #333;
 }
 
 padding-bottom: 500px
@@ -93,4 +117,45 @@ a:hover {
     display: block; 
     margin-bottom: 5px; /* Adiciona um pequeno espaço após o rótulo e antes do campo */
     font-weight: bold;
+}
+
+/* Sol - Visível durante o dia */
+#sun {
+  position: fixed;
+  top: 50px;
+  right: 80px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #FFD700, #FFA500);
+  border-radius: 50%;
+  box-shadow: 0 0 40px #FFD700, 0 0 80px #FFA500;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 10;
+}
+
+body.day-theme #sun {
+  opacity: 1;
+}
+
+/* Estrelas - Visíveis durante a noite */
+.star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 3px white;
+  opacity: 0;
+  transition: opacity 1s ease;
+  animation: twinkle 3s infinite;
+}
+
+body:not(.day-theme) .star {
+  opacity: 1;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
