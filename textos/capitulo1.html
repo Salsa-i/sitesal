@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Capítulo 1</title>
   <link rel="stylesheet" href="../style.css">
+  <script src="../theme.js"></script>
 </head>
 <body>
   <div id="sun"></div>
@@ -12,39 +13,5 @@
   <h1>Capítulo 1</h1>
   <p>Aqui começa o primeiro capítulo do seu conteúdo...</p>
   <a href="../index.html">Voltar para o início</a>
-  
-  <script>
-    // --- TEMA DIA/NOITE ---
-    function setThemeByTime() {
-      const currentHour = new Date().getHours();
-      const isDayTime = currentHour >= 6 && currentHour < 18; // Das 06:00 às 17:59 é dia
-      
-      if (isDayTime) {
-        document.body.classList.add('day-theme');
-      } else {
-        document.body.classList.remove('day-theme');
-        // Criar estrelas apenas à noite
-        createStars();
-      }
-    }
-    
-    function createStars() {
-      // Evita criar estrelas duplicadas
-      if (document.querySelectorAll('.star').length > 0) return;
-      
-      const numberOfStars = 100;
-      for (let i = 0; i < numberOfStars; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDelay = Math.random() * 3 + 's';
-        document.body.appendChild(star);
-      }
-    }
-    
-    // Aplicar tema ao carregar a página
-    setThemeByTime();
-  </script>
 </body>
 </html>
