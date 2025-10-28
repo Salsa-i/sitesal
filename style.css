@@ -118,7 +118,7 @@ a:hover {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     
-    /* NOVO: Centraliza todos os itens do formulário dentro do contêiner */
+    /* Stretch items to fill container width */
     align-items: stretch; 
     transition: all 0.3s ease;
 }

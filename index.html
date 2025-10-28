@@ -140,7 +140,7 @@
         setTimeout(() => emoji.remove(), 7000);
       }
       
-      // Aparece a cada 15-30 segundos
+      // Aparece aproximadamente a cada 20 segundos (50% de chance a cada intervalo)
       setInterval(() => {
         if (Math.random() > 0.5) {
           createFloatingEmoji();
@@ -168,10 +168,11 @@
       
       // INTERAÇÃO 4: Konami Code
       let konamiCode = [];
-      const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+      const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
       
       document.addEventListener('keydown', (e) => {
-        konamiCode.push(e.key);
+        // Use e.code for consistent key detection
+        konamiCode.push(e.code);
         konamiCode = konamiCode.slice(-10);
         
         if (konamiCode.join(',') === konamiSequence.join(',')) {
