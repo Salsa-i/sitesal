@@ -74,54 +74,64 @@
   // Create rising leaves periodically
   setInterval(createRisingLeaf, 3000);
   
-  // Easter egg trigger
-  let easterEggShown = false;
-  
-  window.addEventListener('scroll', () => {
-    // Check if user has scrolled to the bottom
-    const scrollPosition = window.scrollY + window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-    
-    if (scrollPosition >= documentHeight - 100 && !easterEggShown) {
-      easterEggShown = true;
-      easterEgg.classList.add('show');
-      
-      // Create celebration effect
-      for (let i = 0; i < 30; i++) {
-        setTimeout(() => {
-          const celebrationLeaf = document.createElement('div');
-          celebrationLeaf.className = 'leaf';
-          celebrationLeaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
-          celebrationLeaf.style.left = Math.random() * 100 + '%';
-          celebrationLeaf.style.fontSize = (Math.random() * 25 + 20) + 'px';
-          celebrationLeaf.style.animationDuration = (Math.random() * 3 + 2) + 's';
-          celebrationLeaf.style.top = '0';
-          leavesContainer.appendChild(celebrationLeaf);
-          
-          setTimeout(() => celebrationLeaf.remove(), 5000);
-        }, i * 100);
-      }
-      
-      // Hide easter egg after 8 seconds
-      setTimeout(() => {
-        easterEgg.classList.remove('show');
-      }, 8000);
-    }
-  });
-  
-  // Add parallax effect to chapters
+  // Get chapters for parallax effect
   const chapters = document.querySelectorAll('.chapter');
   
-  window.addEventListener('scroll', () => {
-    chapters.forEach((chapter, index) => {
-      const rect = chapter.getBoundingClientRect();
-      const scrollPercent = (window.innerHeight - rect.top) / window.innerHeight;
+  // Easter egg trigger and parallax effects (combined for performance)
+  let easterEggShown = false;
+  let ticking = false;
+  
+  function handleScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        // Easter egg trigger
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        if (scrollPosition >= documentHeight - 100 && !easterEggShown) {
+          easterEggShown = true;
+          easterEgg.classList.add('show');
+          
+          // Create celebration effect
+          for (let i = 0; i < 30; i++) {
+            setTimeout(() => {
+              const celebrationLeaf = document.createElement('div');
+              celebrationLeaf.className = 'leaf';
+              celebrationLeaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+              celebrationLeaf.style.left = Math.random() * 100 + '%';
+              celebrationLeaf.style.fontSize = (Math.random() * 25 + 20) + 'px';
+              celebrationLeaf.style.animationDuration = (Math.random() * 3 + 2) + 's';
+              celebrationLeaf.style.top = '0';
+              leavesContainer.appendChild(celebrationLeaf);
+              
+              setTimeout(() => celebrationLeaf.remove(), 5000);
+            }, i * 100);
+          }
+          
+          // Hide easter egg after 8 seconds
+          setTimeout(() => {
+            easterEgg.classList.remove('show');
+          }, 8000);
+        }
+        
+        // Parallax effect for chapters
+        chapters.forEach((chapter, index) => {
+          const rect = chapter.getBoundingClientRect();
+          const scrollPercent = (window.innerHeight - rect.top) / window.innerHeight;
+          
+          if (scrollPercent > 0 && scrollPercent < 1) {
+            const translateY = (scrollPercent - 0.5) * 20;
+            chapter.style.transform = `translateY(${translateY}px)`;
+          }
+        });
+        
+        ticking = false;
+      });
       
-      if (scrollPercent > 0 && scrollPercent < 1) {
-        const translateY = (scrollPercent - 0.5) * 20;
-        chapter.style.transform = `translateY(${translateY}px)`;
-      }
-    });
-  });
+      ticking = true;
+    }
+  }
+  
+  window.addEventListener('scroll', handleScroll);
   
 })();
