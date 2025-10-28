@@ -140,7 +140,7 @@
         setTimeout(() => emoji.remove(), 7000);
       }
       
-      // Aparece aproximadamente a cada 20 segundos (50% de chance a cada intervalo)
+      // Verifica a cada 20 segundos com 50% de chance (média: um emoji a cada 40 segundos)
       setInterval(() => {
         if (Math.random() > 0.5) {
           createFloatingEmoji();
