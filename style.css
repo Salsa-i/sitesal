@@ -95,28 +95,147 @@ a:hover {
 }
 
 
+#contato-rapido {
+    position: relative;
+}
+
 #contato-rapido form {
     display: flex;
     flex-direction: column; 
     gap: 15px;
     max-width: 500px;
     margin-top: 20px;
+    padding: 30px;
     
-    /* NOVO: Centraliza todos os itens do formulário dentro do contêiner */
-    align-items: center; 
+    /* Beautiful contoured design */
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 102, 0, 0.3);
+    border-radius: 20px;
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 0 20px rgba(255, 102, 0, 0.1),
+        0 0 30px rgba(255, 102, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Stretch items to fill container width */
+    align-items: stretch; 
+    transition: all 0.3s ease;
 }
 
-/* Nota: Para que isso funcione bem, você precisará remover o `width: 100%` 
-   dos seus inputs/textarea para que eles não estiquem a 500px, 
-   ou adicionar uma largura fixa a eles. */
+#contato-rapido form:hover {
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.5),
+        inset 0 0 30px rgba(255, 102, 0, 0.15),
+        0 0 40px rgba(255, 102, 0, 0.3);
+    border-color: rgba(255, 102, 0, 0.5);
+}
 
+body.day-theme #contato-rapido form {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(0, 102, 204, 0.3);
+    box-shadow: 
+        0 8px 32px 0 rgba(0, 0, 0, 0.1),
+        inset 0 0 20px rgba(0, 102, 204, 0.1),
+        0 0 30px rgba(0, 102, 204, 0.15);
+}
+
+body.day-theme #contato-rapido form:hover {
+    border-color: rgba(0, 102, 204, 0.5);
+    box-shadow: 
+        0 8px 32px 0 rgba(0, 0, 0, 0.15),
+        inset 0 0 30px rgba(0, 102, 204, 0.15),
+        0 0 40px rgba(0, 102, 204, 0.25);
+}
 
 #contato-rapido label {
-    /* Não é estritamente necessário com flex-direction: column e display: block nos campos,
-       mas é bom para garantir que o label ocupe a largura total */
     display: block; 
-    margin-bottom: 5px; /* Adiciona um pequeno espaço após o rótulo e antes do campo */
+    margin-bottom: 5px;
     font-weight: bold;
+}
+
+#contato-rapido input,
+#contato-rapido textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid rgba(255, 102, 0, 0.3);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #eee;
+    font-family: Georgia, serif;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+#contato-rapido input:focus,
+#contato-rapido textarea:focus {
+    outline: none;
+    border-color: rgba(255, 102, 0, 0.7);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+}
+
+body.day-theme #contato-rapido input,
+body.day-theme #contato-rapido textarea {
+    background: rgba(255, 255, 255, 0.6);
+    color: #333;
+    border-color: rgba(0, 102, 204, 0.3);
+}
+
+body.day-theme #contato-rapido input:focus,
+body.day-theme #contato-rapido textarea:focus {
+    border-color: rgba(0, 102, 204, 0.7);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 102, 204, 0.3);
+}
+
+#contato-rapido textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+#contato-rapido button {
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #ff6600, #ff8833);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#contato-rapido button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.6);
+    background: linear-gradient(135deg, #ff7711, #ff9944);
+}
+
+#contato-rapido button:active {
+    transform: translateY(0);
+}
+
+body.day-theme #contato-rapido button {
+    background: linear-gradient(135deg, #0066cc, #0088ee);
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+}
+
+body.day-theme #contato-rapido button:hover {
+    background: linear-gradient(135deg, #0077dd, #0099ff);
+    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.6);
+}
+
+.aviso-form {
+    font-size: 0.9em;
+    font-style: italic;
+    opacity: 0.8;
+    text-align: center;
+    margin: 0;
 }
 
 /* Sol - Visível durante o dia */
@@ -158,4 +277,195 @@ body:not(.day-theme) .star {
 @keyframes twinkle {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
+}
+
+/* ========== HIDDEN INTERACTIONS STYLES ========== */
+
+/* Success Popup */
+#success-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  backdrop-filter: blur(5px);
+}
+
+#success-popup.show {
+  opacity: 1;
+}
+
+.popup-content {
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.95), rgba(255, 136, 51, 0.95));
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 50px rgba(255, 102, 0, 0.5);
+  transform: scale(0.7);
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  max-width: 400px;
+}
+
+#success-popup.show .popup-content {
+  transform: scale(1);
+}
+
+.popup-icon {
+  font-size: 4em;
+  margin-bottom: 10px;
+  animation: popupBounce 0.6s ease;
+}
+
+@keyframes popupBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.popup-content h3 {
+  margin: 10px 0;
+  font-size: 2em;
+  color: white;
+}
+
+.popup-content p {
+  margin: 10px 0;
+  color: white;
+  font-size: 1.2em;
+}
+
+.popup-subtitle {
+  font-size: 1em !important;
+  opacity: 0.9;
+}
+
+/* Floating Emojis */
+.floating-emoji {
+  position: fixed;
+  bottom: -50px;
+  font-size: 2em;
+  z-index: 999;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    bottom: -50px;
+    opacity: 0;
+    transform: translateX(0) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 110vh;
+    opacity: 0;
+    transform: translateX(100px) rotate(360deg);
+  }
+}
+
+/* Rainbow Mode */
+body.rainbow-mode {
+  animation: rainbowBackground 3s ease infinite !important;
+}
+
+@keyframes rainbowBackground {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Konami Shake */
+@keyframes konamiShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+/* Sparkles */
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  z-index: 998;
+}
+
+.sparkle::before,
+.sparkle::after {
+  content: '';
+  position: absolute;
+  background: linear-gradient(45deg, #ff6600, #FFD700);
+  border-radius: 50%;
+}
+
+.sparkle::before {
+  width: 6px;
+  height: 6px;
+  top: -3px;
+  left: -3px;
+  animation: sparkleAnimation 1s ease-out forwards;
+}
+
+.sparkle::after {
+  width: 4px;
+  height: 4px;
+  top: 2px;
+  left: 2px;
+  animation: sparkleAnimation 1s ease-out 0.1s forwards;
+}
+
+@keyframes sparkleAnimation {
+  0% {
+    opacity: 1;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3) rotate(180deg);
+  }
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  top: 80px;
+  right: -400px;
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.95), rgba(255, 136, 51, 0.95));
+  color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(255, 102, 0, 0.4);
+  z-index: 1001;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  max-width: 300px;
+}
+
+.notification.show {
+  right: 20px;
+}
+
+body.day-theme .notification {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.95), rgba(0, 136, 238, 0.95));
+  box-shadow: 0 5px 25px rgba(0, 102, 204, 0.4);
+}
+
+body.day-theme .popup-content {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.95), rgba(0, 136, 238, 0.95));
+  box-shadow: 0 10px 50px rgba(0, 102, 204, 0.5);
 }
