@@ -18,7 +18,7 @@
   </nav>
 
   <p>
-    Esse é o site
+    Olá, esse é o site
   </p>
 
   <section id="contato-rapido">
@@ -63,7 +63,10 @@
           form.reset(); 
           status.innerHTML = "Obrigado! Mensagem enviada com sucesso.";
           status.style.color = '#00CC99';
-          setTimeout(() => status.innerHTML = '', 5000); 
+          setTimeout(() => status.innerHTML = '', 5000);
+          
+          // INTERAÇÃO 1: Popup de sucesso animado
+          showSuccessPopup();
         }
 
         function error() {
@@ -97,6 +100,176 @@
           });
         });
       }
+
+      // ========== HIDDEN INTERACTIONS ==========
+      
+      // INTERAÇÃO 1: Popup animado quando mensagem é enviada
+      function showSuccessPopup() {
+        const popup = document.createElement('div');
+        popup.id = 'success-popup';
+        popup.innerHTML = `
+          <div class="popup-content">
+            <div class="popup-icon">🎉</div>
+            <h3>Incrível!</h3>
+            <p>Sua mensagem foi enviada com sucesso!</p>
+            <p class="popup-subtitle">Em breve você terá uma resposta 😊</p>
+          </div>
+        `;
+        document.body.appendChild(popup);
+        
+        setTimeout(() => {
+          popup.classList.add('show');
+        }, 10);
+        
+        setTimeout(() => {
+          popup.classList.remove('show');
+          setTimeout(() => popup.remove(), 500);
+        }, 3500);
+      }
+      
+      // INTERAÇÃO 2: Emojis flutuantes aleatórios
+      const floatingEmojis = ['✨', '🌟', '💫', '⭐', '🌙', '☄️', '🎨', '🎭'];
+      function createFloatingEmoji() {
+        const emoji = document.createElement('div');
+        emoji.className = 'floating-emoji';
+        emoji.textContent = floatingEmojis[Math.floor(Math.random() * floatingEmojis.length)];
+        emoji.style.left = Math.random() * 90 + 5 + '%';
+        emoji.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        document.body.appendChild(emoji);
+        
+        setTimeout(() => emoji.remove(), 7000);
+      }
+      
+      // Aparece a cada 15-30 segundos
+      setInterval(() => {
+        if (Math.random() > 0.5) {
+          createFloatingEmoji();
+        }
+      }, 20000);
+      
+      // INTERAÇÃO 3: Easter egg - clique triplo no título
+      let titleClickCount = 0;
+      const h1 = document.querySelector('h1');
+      if (h1) {
+        h1.addEventListener('click', () => {
+          titleClickCount++;
+          if (titleClickCount === 3) {
+            document.body.classList.toggle('rainbow-mode');
+            showNotification('🌈 Modo arco-íris ativado!');
+            titleClickCount = 0;
+            
+            setTimeout(() => {
+              document.body.classList.remove('rainbow-mode');
+            }, 10000);
+          }
+          setTimeout(() => titleClickCount = 0, 2000);
+        });
+      }
+      
+      // INTERAÇÃO 4: Konami Code
+      let konamiCode = [];
+      const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+      
+      document.addEventListener('keydown', (e) => {
+        konamiCode.push(e.key);
+        konamiCode = konamiCode.slice(-10);
+        
+        if (konamiCode.join(',') === konamiSequence.join(',')) {
+          activateKonamiMode();
+          konamiCode = [];
+        }
+      });
+      
+      function activateKonamiMode() {
+        showNotification('🎮 Código Konami ativado! Você é demais!');
+        document.body.style.animation = 'konamiShake 0.5s';
+        
+        for (let i = 0; i < 20; i++) {
+          setTimeout(() => createFloatingEmoji(), i * 100);
+        }
+        
+        setTimeout(() => {
+          document.body.style.animation = '';
+        }, 500);
+      }
+      
+      // INTERAÇÃO 5: Mensagem escondida no texto
+      const paragraphs = document.querySelectorAll('p');
+      paragraphs.forEach((p, index) => {
+        if (index === 0) { // Primeiro parágrafo
+          p.style.cursor = 'help';
+          p.title = 'Passe o mouse e segure...';
+          
+          let hoverTimeout;
+          p.addEventListener('mouseenter', () => {
+            hoverTimeout = setTimeout(() => {
+              showNotification('🔍 Você descobriu uma mensagem secreta: "A curiosidade move o mundo!"');
+            }, 2000);
+          });
+          
+          p.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimeout);
+          });
+        }
+      });
+      
+      // INTERAÇÃO 6: Efeito sparkle ao passar o mouse em links
+      const links = document.querySelectorAll('nav a');
+      links.forEach(link => {
+        link.addEventListener('mouseenter', function(e) {
+          createSparkle(e.pageX, e.pageY);
+        });
+        
+        link.addEventListener('mousemove', function(e) {
+          if (Math.random() > 0.7) {
+            createSparkle(e.pageX, e.pageY);
+          }
+        });
+      });
+      
+      function createSparkle(x, y) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = x + 'px';
+        sparkle.style.top = y + 'px';
+        document.body.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 1000);
+      }
+      
+      // INTERAÇÃO 7: Achievement ao rolar até o fim
+      let hasReachedBottom = false;
+      window.addEventListener('scroll', () => {
+        const scrolledToBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100;
+        
+        if (scrolledToBottom && !hasReachedBottom) {
+          hasReachedBottom = true;
+          showNotification('🏆 Conquista desbloqueada: Explorador Completo!');
+          
+          // Efeito de comemoração
+          for (let i = 0; i < 15; i++) {
+            setTimeout(() => createFloatingEmoji(), i * 150);
+          }
+        }
+      });
+      
+      // Função auxiliar para notificações
+      function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          notification.classList.add('show');
+        }, 10);
+        
+        setTimeout(() => {
+          notification.classList.remove('show');
+          setTimeout(() => notification.remove(), 500);
+        }, 4000);
+      }
+
     }); // Fim do DOMContentLoaded
   </script>
 </body>
