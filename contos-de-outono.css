@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background: linear-gradient(
+    to bottom,
+    #d4a574 0%,
+    #e8b387 25%,
+    #daa76d 50%,
+    #c89666 75%,
+    #b08050 100%
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: #3d2817;
+  position: relative;
+  overflow-x: hidden;
+  padding: 80px 20px 120px;
+}
+
+/* Animated leaves container */
+.leaves-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Content */
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 60px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.content h1 {
+  font-size: 3em;
+  text-align: center;
+  margin-bottom: 60px;
+  color: #5d3a1a;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.content h1::after {
+  content: '🍂';
+  display: block;
+  font-size: 0.5em;
+  margin-top: 15px;
+}
+
+.chapter {
+  margin-bottom: 80px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  border-left: 4px solid #c89666;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+.chapter:hover {
+  transform: translateX(10px);
+  box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.chapter p {
+  font-size: 1.2em;
+  line-height: 2;
+  margin-bottom: 20px;
+  text-align: justify;
+  color: #3d2817;
+  text-indent: 40px;
+}
+
+.chapter p:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation for chapters */
+.chapter:nth-child(2) { animation-delay: 0.1s; }
+.chapter:nth-child(3) { animation-delay: 0.2s; }
+.chapter:nth-child(4) { animation-delay: 0.3s; }
+.chapter:nth-child(5) { animation-delay: 0.4s; }
+.chapter:nth-child(6) { animation-delay: 0.5s; }
+
+/* Easter egg */
+.easter-egg {
+  position: fixed;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #d4a574, #e8b387);
+  padding: 30px 50px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: bottom 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border: 3px solid #c89666;
+}
+
+.easter-egg.show {
+  bottom: 40px;
+}
+
+.easter-egg-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #3d2817;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.leaf-icon {
+  font-size: 2em;
+  animation: leafRotate 3s ease-in-out infinite;
+}
+
+.easter-egg-content .leaf-icon:last-child {
+  animation-delay: 1.5s;
+}
+
+@keyframes leafRotate {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+}
+
+/* Back link */
+.back-link {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  color: #3d2817;
+  text-decoration: none;
+  font-size: 1em;
+  padding: 12px 25px;
+  border: 2px solid #c89666;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+}
+
+.back-link:hover {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Falling leaves animation */
+.leaf {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  pointer-events: none;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content {
+    padding: 40px 30px;
+  }
+  
+  .content h1 {
+    font-size: 2.2em;
+  }
+  
+  .chapter p {
+    font-size: 1.05em;
+    line-height: 1.8;
+  }
+  
+  .back-link {
+    top: 15px;
+    left: 15px;
+    font-size: 0.9em;
+    padding: 10px 20px;
+  }
+  
+  .easter-egg-content {
+    font-size: 1.1em;
+    gap: 15px;
+  }
+}
+
+/* Parallax effect for background */
+@keyframes backgroundShift {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}

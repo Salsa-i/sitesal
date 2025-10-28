@@ -1,0 +1,249 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+  min-height: 100vh;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+/* Starfield effect */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.stars::before,
+.stars::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 
+    /* Layer 1 - Small stars */
+    50vw 30vh 0 0 white, 10vw 10vh 0 0 white, 90vw 80vh 0 0 white,
+    20vw 60vh 0 0 white, 70vw 20vh 0 0 white, 40vw 90vh 0 0 white,
+    80vw 50vh 0 0 white, 30vw 70vh 0 0 white, 60vw 40vh 0 0 white,
+    15vw 85vh 0 0 white, 85vw 15vh 0 0 white, 45vw 55vh 0 0 white,
+    25vw 25vh 0 0 white, 75vw 75vh 0 0 white, 5vw 95vh 0 0 white,
+    95vw 5vh 0 0 white, 35vw 65vh 0 0 white, 65vw 35vh 0 0 white,
+    55vw 45vh 0 0 white, 12vw 88vh 0 0 white, 88vw 12vh 0 0 white,
+    22vw 78vh 0 0 white, 78vw 22vh 0 0 white, 32vw 68vh 0 0 white,
+    68vw 32vh 0 0 white, 42vw 58vh 0 0 white, 58vw 42vh 0 0 white,
+    52vw 48vh 0 0 white, 48vw 52vh 0 0 white, 8vw 92vh 0 0 white,
+    92vw 8vh 0 0 white, 18vw 82vh 0 0 white, 82vw 18vh 0 0 white,
+    28vw 72vh 0 0 white, 72vw 28vh 0 0 white, 38vw 62vh 0 0 white,
+    62vw 38vh 0 0 white, 2vw 98vh 0 0 white, 98vw 2vh 0 0 white,
+    /* Layer 2 - More stars */
+    14vw 16vh 0 0 rgba(255, 255, 255, 0.7), 84vw 86vh 0 0 rgba(255, 255, 255, 0.7),
+    44vw 46vh 0 0 rgba(255, 255, 255, 0.7), 54vw 56vh 0 0 rgba(255, 255, 255, 0.7),
+    24vw 26vh 0 0 rgba(255, 255, 255, 0.7), 74vw 76vh 0 0 rgba(255, 255, 255, 0.7),
+    34vw 36vh 0 0 rgba(255, 255, 255, 0.7), 64vw 66vh 0 0 rgba(255, 255, 255, 0.7),
+    4vw 6vh 0 0 rgba(255, 255, 255, 0.7), 94vw 96vh 0 0 rgba(255, 255, 255, 0.7);
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+.stars::after {
+  box-shadow: 
+    /* Different set of stars */
+    60vw 10vh 0 0 white, 10vw 50vh 0 0 white, 40vw 70vh 0 0 white,
+    90vw 30vh 0 0 white, 20vw 80vh 0 0 white, 70vw 60vh 0 0 white,
+    50vw 20vh 0 0 white, 80vw 90vh 0 0 white, 30vw 40vh 0 0 white,
+    5vw 75vh 0 0 white, 95vw 25vh 0 0 white, 45vw 85vh 0 0 white,
+    15vw 35vh 0 0 white, 85vw 65vh 0 0 white, 25vw 55vh 0 0 white,
+    75vw 45vh 0 0 white, 35vw 15vh 0 0 white, 65vw 95vh 0 0 white,
+    55vw 5vh 0 0 white, 12vw 42vh 0 0 white, 88vw 58vh 0 0 white,
+    22vw 32vh 0 0 white, 78vw 68vh 0 0 white, 32vw 22vh 0 0 white,
+    68vw 78vh 0 0 white, 42vw 12vh 0 0 white, 58vw 88vh 0 0 white;
+  animation: twinkle 5s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
+
+/* Moon */
+.moon {
+  position: fixed;
+  top: 80px;
+  right: 120px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #f4f4f4, #d4d4d4);
+  box-shadow: 
+    0 0 40px rgba(244, 244, 244, 0.5),
+    0 0 80px rgba(244, 244, 244, 0.3),
+    inset -10px -10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  animation: moonGlow 8s ease-in-out infinite;
+}
+
+.moon::before {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  top: 30%;
+  left: 45%;
+  box-shadow: 
+    20px 10px 0 -5px rgba(0, 0, 0, 0.15),
+    -5px 25px 0 -3px rgba(0, 0, 0, 0.1),
+    15px 35px 0 -7px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes moonGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 40px rgba(244, 244, 244, 0.5),
+      0 0 80px rgba(244, 244, 244, 0.3),
+      inset -10px -10px 30px rgba(0, 0, 0, 0.3);
+  }
+  50% { 
+    box-shadow: 
+      0 0 60px rgba(244, 244, 244, 0.7),
+      0 0 100px rgba(244, 244, 244, 0.5),
+      inset -10px -10px 30px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Content */
+.content {
+  max-width: 700px;
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.content h1 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  animation: fadeIn 2s ease-in;
+}
+
+.content p {
+  font-size: 1.15em;
+  line-height: 1.9;
+  margin-bottom: 25px;
+  color: rgba(255, 255, 255, 0.85);
+  animation: fadeIn 2s ease-in;
+  animation-fill-mode: both;
+}
+
+.content p:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.content p:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.content p:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.dialogue {
+  margin: 35px 0;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dialogue p {
+  font-size: 1.05em;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+}
+
+.dialogue p:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.back-link {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.95em;
+  padding: 12px 25px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.back-link:hover {
+  color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content {
+    padding: 30px 20px;
+  }
+  
+  .content h1 {
+    font-size: 2em;
+  }
+  
+  .content p {
+    font-size: 1em;
+  }
+  
+  .moon {
+    width: 80px;
+    height: 80px;
+    top: 50px;
+    right: 50px;
+  }
+}
