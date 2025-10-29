@@ -40,7 +40,7 @@ body {
   margin: 0 auto;
   position: relative;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.95);
   padding: 60px;
   border-radius: 20px;
   backdrop-filter: blur(10px);
@@ -64,10 +64,33 @@ body {
   margin-top: 15px;
 }
 
+.epigraph {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 30px;
+  font-style: italic;
+  color: #5d3a1a;
+  font-size: 1.1em;
+  line-height: 1.8;
+}
+
+.epigraph p {
+  margin-bottom: 10px;
+  text-indent: 0 !important;
+}
+
+.chapter h2 {
+  font-size: 1.8em;
+  color: #5d3a1a;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
 .chapter {
   margin-bottom: 80px;
   padding: 30px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
   border-left: 4px solid #c89666;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -83,9 +106,8 @@ body {
   font-size: 1.2em;
   line-height: 2;
   margin-bottom: 20px;
-  text-align: justify;
   color: #3d2817;
-  text-indent: 40px;
+  text-indent: 0;
 }
 
 .chapter p:last-child {
